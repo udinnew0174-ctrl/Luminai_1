@@ -1,30 +1,8 @@
 (function() {
-    // --- Load Configuration ---
-    let CONFIG = {
-        IMGBB_API_KEY: '',
-        REMOVE_BG_API: ''
-    };
-
-    const configElement = document.getElementById('app-config');
-    if (configElement) {
-        try {
-            // Parse JSON from the script tag's content
-            const jsonText = configElement.textContent.trim();
-            if (jsonText) {
-                CONFIG = JSON.parse(jsonText);
-            }
-        } catch (e) {
-            console.error('Failed to parse config.json content:', e);
-        }
-    }
-
-    // Fallback jika config tidak ada (untuk development)
-    if (!CONFIG.IMGBB_API_KEY) {
-        CONFIG.IMGBB_API_KEY = '3db9b8e60b427496c632c2ad04a2fb7e';
-    }
-    if (!CONFIG.REMOVE_BG_API) {
-        CONFIG.REMOVE_BG_API = 'https://api.danzy.web.id/api/maker/removebg?url=';
-    }
+    // Ambil konfigurasi dari global
+    const CONFIG = window.LUMINA_CONFIG || {};
+    const IMGBB_API_KEY = CONFIG.IMGBB_API_KEY || '';
+    const REMOVE_BG_API = CONFIG.REMOVE_BG_API || '';
 
     // DOM Elements
     const fileInput = document.getElementById('fileInput');
@@ -112,7 +90,7 @@
         const formData = new FormData();
         formData.append('image', file);
 
-        const response = await fetch(`https://api.imgbb.com/1/upload?key=${CONFIG.IMGBB_API_KEY}`, {
+        const response = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, {
             method: 'POST',
             body: formData
         });
@@ -203,7 +181,7 @@
         downloadSection.style.display = 'none';
 
         try {
-            const apiUrl = `${CONFIG.REMOVE_BG_API}${encodeURIComponent(publicImageUrl)}`;
+            const apiUrl = `${REMOVE_BG_API}${encodeURIComponent(publicImageUrl)}`;
             console.log('Calling API:', apiUrl);
             
             const controller = new AbortController();
@@ -335,5 +313,5 @@
         }
     });
 
-    console.log('App initialized with config:', CONFIG);
+    console.log('LUMINA AI siap digunakan');
 })();
