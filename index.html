@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>LUMINA - AI Background Remover</title>
+    
+    <!-- Fonts & Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <div class="container">
+        <div class="header">
+            <div class="header-badge">
+                <i class="fas fa-robot"></i>
+                <span>AI-Powered • 4K Quality</span>
+                <i class="fas fa-bolt" style="color: #fbbf24;"></i>
+            </div>
+            <h1>LUMINA AI</h1>
+            <p>Professional background removal for everyone</p>
+        </div>
+
+        <div class="grid-panel">
+            <!-- Left Card: Upload -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <div class="card-icon">
+                            <i class="fas fa-cloud-arrow-up"></i>
+                        </div>
+                        <div>
+                            <h2>Upload</h2>
+                            <p>JPG, PNG, WEBP</p>
+                        </div>
+                    </div>
+                    <div class="card-status status-standby" id="uploadStatus">
+                        <i class="fas fa-circle"></i>
+                        <span id="uploadStatusText">Ready</span>
+                    </div>
+                </div>
+
+                <input type="file" id="fileInput" accept="image/*" hidden>
+
+                <div class="upload-area" id="dropZone">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <div class="text">Tap to browse</div>
+                    <div class="small">Max 10MB</div>
+                </div>
+
+                <div class="preview-container">
+                    <div class="preview-box" id="originalPreview">
+                        <div class="placeholder-preview">
+                            <i class="fas fa-image"></i>
+                            <span>Original</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="url-badge" id="urlBadge">
+                    <i class="fas fa-link"></i>
+                    <span id="urlText">No image</span>
+                </div>
+            </div>
+
+            <!-- Right Card: Result -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <div class="card-icon">
+                            <i class="fas fa-eraser"></i>
+                        </div>
+                        <div>
+                            <h2>Remove</h2>
+                            <p>Background</p>
+                        </div>
+                    </div>
+                    <div class="card-status status-standby" id="processStatus">
+                        <i class="fas fa-circle"></i>
+                        <span id="processStatusText">Standby</span>
+                    </div>
+                </div>
+
+                <div class="preview-container">
+                    <div class="preview-box" id="resultPreview">
+                        <div class="placeholder-preview">
+                            <i class="fas fa-eye-slash"></i>
+                            <span>Result</span>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" id="processBtn" disabled>
+                    <i class="fas fa-wand-magic-sparkles"></i>
+                    Remove Background
+                </button>
+
+                <div class="status-message info" id="statusMsg">
+                    <i class="fas fa-info-circle"></i>
+                    <span id="statusText">Ready to upload</span>
+                </div>
+
+                <div id="downloadSection" style="display: none; text-align: center;">
+                    <a id="downloadLink" class="download-btn" download="lumina-removed.png">
+                        <i class="fas fa-download"></i>
+                        Download PNG
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div>Powered by <span>Udin AI</span></div>
+            <div class="footer-divider"></div>
+            <div>ImageBB • Danzy</div>
+        </div>
+    </div>
+
+    <!-- Config & Script -->
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
